@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+
+		<div class="row" id="users-data">
+			<div class="col-md-2" style="background-color:yellow;">
+				<ul>
+					<li class="usersListItem" id="show-users">Show users</li>
+					<li class="usersListItem" id="add-users">Add users</li>
+				</ul>
+			</div>
+		    <div class="col-md-10">
+		    		<div id="users-table">
+			    		<table class="table table-striped">
+			    			<thead>
+			    				<tr>
+							        <th>NAME</th>
+							        <th>Address</th>
+							        <th>EMAIL</th>
+							        <th>PHONE NUMBER</th>
+							        <th>ACTION</th>
+							      </tr>
+			    			</thead>
+			    		<tbody id="table-content">
+			    		</tbody>
+			    	</table>
+		    		</div>
+		    		<div class="form-data" id="form-data-users">
+		    			<form id="myForm">
+						    <div class="form-group">
+						      <label for="user-name">Name</label>
+						      <input type="text" class="form-control" name="user-name">
+						    </div>
+						    <div class="form-group">
+						      <label for="address">Address</label>
+						      <input type="text" class="form-control" name="address">
+						    </div>
+						    <div class="form-group">
+						      <label for="phnum">Phone Number</label>
+						      <input type="text" class="form-control" name="phnum">
+						    </div>
+						    <div class="form-group">
+						      <label for="email">Email ID</label>
+						      <input type="text" class="form-control" name="email">
+						    </div>
+						    <button type="submit" class="btn btn-info btn-lg">Submit</button>
+						</form>
+					</div>
+		   	  </div>
+		</div>
+	</div>
+	</table>
+	<script src="./js/script.js"></script>
+</body>
+</html>
