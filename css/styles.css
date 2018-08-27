@@ -1,3 +1,7 @@
 .nav-list-group{
 	background-color:yellow;
 }
+
+.usersListItem{
+	cursor:pointer;
+}
