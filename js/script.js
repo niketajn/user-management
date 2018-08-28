@@ -1,7 +1,6 @@
 	
 
-	 $(document).ready(function(){
-	 	 
+	 $(document).ready(function(){ 
 		 	$('#users-data #users-table').hide();
 		 	$('#form-data-users #myForm').hide();
 
@@ -26,7 +25,7 @@
 			 	tdzero.addClass('userId');
 			 	tdzero.css('display','none');
 			 	tdzero.html(value._id);
-			 	tr.append(tdzero)
+			 	tr.append(tdzero);
 
 			 	var td1 = $("<td></td>");
 			 	td1.html(value.name);
@@ -50,7 +49,7 @@
 			 	var td5 = $("<td></td>");
 			 	td5.html('<button class="btn btn-danger btn-xs deleteBtn">DELETE</button>');
 			 	
-			 	td5.click(deleteUser) //tell jquery to call deleteU function when user performs 'click'
+			 	td5.click(deleteUser) //tell jquery to call deleteUser function when user performs 'click'
 			 	tr.append(td5);
 
 			 	$("#table-content").append(tr);
@@ -67,21 +66,22 @@
         var obj = {
           _id: guidGenerator(),
           name: $("input[name=user-name]").val(),
-          address: $("input[name=address]").val(),
+          address: jQuery("textarea[name=address]").val(),
           phoneNumber: $("input[name=phnum]").val(),
           email: $("input[name=email]").val(),
         }
+        
         usersList.push(obj);
+       
         refreshList(usersList);
+       
     });
 
     function deleteUser(event){
     	var button = $(event.target);  //which button is clicked
     	var tr = button.parent().parent()
-
-
     	var randomID = tr.find('.userId').html(); //find inside tr children
-    	console.log(randomID);
+    	deleteParticularUser(randomID);
     }
 
     
@@ -92,6 +92,18 @@
 	    };
 	    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 	}
+
+	function deleteParticularUser(randomID){
+		$.each(usersList,function(i,v){
+
+			if (randomID == v._id ){
+
+			usersList.splice(i,1);
+			refreshList(usersList);
+			}
+		});
+	}
+
 
 //document ready    
 });
