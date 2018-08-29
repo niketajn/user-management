@@ -133,8 +133,7 @@
 	function editUser(randomID){
 		$.each(usersList,function(index,value){
 			if (randomID == value._id ){
-				console.log(randomID);
-				console.log(value._id);
+				
 				$("input[name=randomId]").val(randomID);
 				$("input[name=user-name]").val(value.name);
           		$("textarea[name=address]").val(value.address);
