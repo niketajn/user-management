@@ -47,9 +47,14 @@
 			 	tr.append(td4);
 
 			 	var td5 = $("<td></td>");
-			 	td5.html('<button class="btn btn-danger btn-xs deleteBtn">DELETE</button>');
-			 	
-			 	td5.click(deleteUser) //tell jquery to call deleteUser function when user performs 'click'
+
+			 	var edit = $('<span class="fa fa-pencil fa-lg fa-fw" title="Edit"></span>');
+			 	edit.click(editUserEvent);
+			 	td5.append(edit);
+
+			 	var deleteU = $('<span class="fa fa-trash-o fa-lg fa-fw" title="Delete"></span>');
+			 	deleteU.click(deleteUserEvent);
+			 	td5.append(deleteU);
 			 	tr.append(td5);
 
 			 	$("#table-content").append(tr);
@@ -61,27 +66,50 @@
 			 });
 		}
     var usersList = [];
+    var editMode = false;
+    var obj;
     $('#myForm').submit(function(e){
         e.preventDefault();
-        var obj = {
-          _id: guidGenerator(),
-          name: $("input[name=user-name]").val(),
-          address: jQuery("textarea[name=address]").val(),
-          phoneNumber: $("input[name=phnum]").val(),
-          email: $("input[name=email]").val(),
-        }
-        
-        usersList.push(obj);
-       
-        refreshList(usersList);
-       
+        if (editMode == true){
+		        saveUser();
+		        editMode = false;
+		        refreshList(usersList);
+        }else{
+
+		        obj = {
+		          _id: guidGenerator(),
+		          name: $("input[name=user-name]").val(),
+		          address: $("textarea[name=address]").val(),
+		          phoneNumber: $("input[name=phnum]").val(),
+		          email: $("input[name=email]").val(),
+		        }
+			        usersList.push(obj);
+
+			         //clear form values
+			        $("input[name=user-name]").val('');
+			        $("textarea[name=address]").val('');
+			        $("input[name=phnum]").val('');
+			        $("input[name=email]").val('');
+			        refreshList(usersList);
+
+       		}
     });
 
-    function deleteUser(event){
-    	var button = $(event.target);  //which button is clicked
-    	var tr = button.parent().parent()
-    	var randomID = tr.find('.userId').html(); //find inside tr children
-    	deleteParticularUser(randomID);
+    function deleteUserEvent(event){
+			if (confirm("Are you sure?")) {     	
+				var button = $(event.target);  //which button is clicked
+		    	var tr = button.parent().parent()
+		    	var randomID = tr.find('.userId').html(); //find inside tr children
+		    	deleteUser(randomID);
+		    }
+    }
+
+    function editUserEvent(event){
+    			var button = $(event.target);//which button is clicked
+    			editMode = true;
+		    	var tr = button.parent().parent()
+		    	var randomID = tr.find('.userId').html();
+		    	editUser(randomID);
     }
 
     
@@ -93,17 +121,47 @@
 	    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 	}
 
-	function deleteParticularUser(randomID){
+	function deleteUser(randomID){
 		$.each(usersList,function(i,v){
-
 			if (randomID == v._id ){
+				usersList.splice(i,1);
+				refreshList(usersList);
+			}
+		});
+	}
 
-			usersList.splice(i,1);
-			refreshList(usersList);
+	function editUser(randomID){
+		$.each(usersList,function(index,value){
+			if (randomID == value._id ){
+				console.log(randomID);
+				console.log(value._id);
+				$("input[name=randomId]").val(randomID);
+				$("input[name=user-name]").val(value.name);
+          		$("textarea[name=address]").val(value.address);
+           		$("input[name=phnum]").val(value.phoneNumber);
+           		$("input[name=email]").val(value.email);	
+			 	$('#users-data #users-table').hide();
+			 	$('#form-data-users #myForm').show();           		
 			}
 		});
 	}
 
 
+	function saveUser(){
+		$.each(usersList,function(index,value){
+			
+			if (($("input[name=randomId]").val()) == value._id){
+
+				 obj = {
+			          _id: value._id,
+			          name: $("input[name=user-name]").val(),
+			          address: $("textarea[name=address]").val(),
+			          phoneNumber: $("input[name=phnum]").val(),
+			          email: $("input[name=email]").val(),
+       				 }
+       				 usersList[index]=obj;	 
+			}
+		});
+	}
 //document ready    
 });
