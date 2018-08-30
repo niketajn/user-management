@@ -66,6 +66,7 @@
 			 });
 		}
     var usersList = [];
+   
     var editMode = false;
     var obj;
     $('#myForm').submit(function(e){
@@ -73,26 +74,30 @@
         if (editMode == true){
 		        saveUser();
 		        editMode = false;
-		        refreshList(usersList);
-        }else{
 
+        }else{
+        		var dateTime = new Date();
 		        obj = {
 		          _id: guidGenerator(),
 		          name: $("input[name=user-name]").val(),
 		          address: $("textarea[name=address]").val(),
 		          phoneNumber: $("input[name=phnum]").val(),
 		          email: $("input[name=email]").val(),
-		        }
-			        usersList.push(obj);
+		          sex: $("input[name=sex]:checked").val(),
+		          ismarried: $("input[name=married]:checked").val(),
+		          currentDateTime: dateTime,
+		        	}
+			        usersList.push(obj);    
+       		    }
 
-			         //clear form values
-			        $("input[name=user-name]").val('');
-			        $("textarea[name=address]").val('');
-			        $("input[name=phnum]").val('');
-			        $("input[name=email]").val('');
-			        refreshList(usersList);
-
-       		}
+	       		 //clear form values
+	       		 $("input[name=user-name]").val('');
+				        $("textarea[name=address]").val('');
+				        $("input[name=phnum]").val('');
+				        $("input[name=email]").val('');
+				        $("input[name=sex]:checked").val('');
+			            $("input[name=married]:checked").val('');
+			        	refreshList(usersList);
     });
 
     function deleteUserEvent(event){
@@ -138,7 +143,9 @@
 				$("input[name=user-name]").val(value.name);
           		$("textarea[name=address]").val(value.address);
            		$("input[name=phnum]").val(value.phoneNumber);
-           		$("input[name=email]").val(value.email);	
+           		$("input[name=email]").val(value.email);
+           		$("input[name=sex]").val(value.sex);
+           		$("input[name=married]").val(value.ismarried);	
 			 	$('#users-data #users-table').hide();
 			 	$('#form-data-users #myForm').show();           		
 			}
@@ -150,17 +157,21 @@
 		$.each(usersList,function(index,value){
 			
 			if (($("input[name=randomId]").val()) == value._id){
-
+					var modifyDateTime = new Date();
 				 obj = {
 			          _id: value._id,
 			          name: $("input[name=user-name]").val(),
 			          address: $("textarea[name=address]").val(),
 			          phoneNumber: $("input[name=phnum]").val(),
 			          email: $("input[name=email]").val(),
+			          sex: $("input[name=sex]:checked").val(),
+		          	  ismarried: $("input[name=married]:checked").val(),
+			          currentDateTime: modifyDateTime,
        				 }
        				 usersList[index]=obj;	 
 			}
 		});
 	}
+
 //document ready    
 });
