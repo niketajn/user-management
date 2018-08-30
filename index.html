@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="./css/styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
@@ -29,6 +28,7 @@
 			    				<tr>
 			    					<th style="display: none">USERID</th>
 							        <th>NAME</th>
+							        <th>DOB</th>
 							        <th>Address</th>
 							        <th>EMAIL</th>
 							        <th>PHONE NUMBER</th>
@@ -42,10 +42,25 @@
 		    		<div class="form-data" id="form-data-users">
 		    			<form id="myForm">
 		    				<input type="hidden" name="randomId">
+						    
 						    <div class="form-group">
 						      <label for="user-name">Name</label>
 						      <input type="text" class="form-control" name="user-name">
 						    </div>
+						    		<div class="row">
+						    		<div class="col-md-4 form-group">
+						    			<label>Date Of Birth</label>
+						    			 <div class="input-group">
+        									<div class="input-group-addon">
+         										<i class="fa fa-calendar">
+         													</i>
+        											</div>
+        								<input class="form-control" autocomplete="off" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+       								  </div>
+						    		</div>
+						    	</div>
+						    	
+						   
 						    <div class="sex">
 						    	<label>SEX</label>
 				        	 	<label class="radio-inline">
@@ -53,7 +68,7 @@
 								<label class="radio-inline">
 									<input type="radio" name="sex" value="female">Female</label>
 									<label class="radio-inline">
-									<input type="radio" name="sex" value="bisexual">Bisexual</label>
+									<input type="radio" name="sex" value="bisexual">Other</label>
 								</div>
 								<div class="married">
 								<label>Married</label>
@@ -90,6 +105,9 @@
     <button type="button" data-dismiss="modal" class="btn">Cancel</button>
   </div>
 </div>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 	<script src="./js/script.js"></script>
 </body>
 </html>

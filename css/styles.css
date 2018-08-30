@@ -5,3 +5,22 @@
 .usersListItem{
 	cursor:pointer;
 }
+
+.inner-addon{
+	position:relative;
+}
+
+.inner-addon .glyphicon{
+	position:absolute;
+	padding:10px;
+}
+
+.right-addon .glyphicon{
+	right:0px;
+
+}
+
+.right-addon input{
+	padding-right:30px;
+
+}

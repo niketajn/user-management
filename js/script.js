@@ -31,31 +31,36 @@
 			 	td1.html(value.name);
 			 	tr.append(td1);
 
-			 	
 			 	var td2 = $("<td></td>");
-			 	td2.html(value.address);
+			 	td2.html(value.dob);
 			 	tr.append(td2);
 
 			 	
 			 	var td3 = $("<td></td>");
-			 	td3.html(value.email);
+			 	td3.html(value.address);
 			 	tr.append(td3);
 
-			 
+			 	
 			 	var td4 = $("<td></td>");
-			 	td4.html(value.phoneNumber);
+			 	td4.html(value.email);
 			 	tr.append(td4);
 
+			 
 			 	var td5 = $("<td></td>");
+			 	td5.html(value.phoneNumber);
+			 	tr.append(td5);
 
+			 	var td6 = $("<td></td>");
 			 	var edit = $('<span class="fa fa-pencil fa-lg fa-fw" title="Edit"></span>');
 			 	edit.click(editUserEvent);
-			 	td5.append(edit);
+			 	td6.append(edit);
 
 			 	var deleteU = $('<span class="fa fa-trash-o fa-lg fa-fw" title="Delete"></span>');
 			 	deleteU.click(deleteUserEvent);
-			 	td5.append(deleteU);
-			 	tr.append(td5);
+			 	td6.append(deleteU);
+			 	tr.append(td6);
+
+			 	
 
 			 	$("#table-content").append(tr);
 
@@ -86,6 +91,7 @@
 		          sex: $("input[name=sex]:checked").val(),
 		          ismarried: $("input[name=married]:checked").val(),
 		          currentDateTime: dateTime,
+		          dob: $('input[name="date"]').val(),
 		        	}
 			        usersList.push(obj);    
        		    }
@@ -95,8 +101,9 @@
 				        $("textarea[name=address]").val('');
 				        $("input[name=phnum]").val('');
 				        $("input[name=email]").val('');
-				        $("input[name=sex]:checked").val('');
-			            $("input[name=married]:checked").val('');
+				        $('input[name=date]').val('');
+				        $("input[name=sex]").prop('checked',false);
+			            $("input[name=married]").prop('checked',false);
 			        	refreshList(usersList);
     });
 
@@ -145,7 +152,8 @@
            		$("input[name=phnum]").val(value.phoneNumber);
            		$("input[name=email]").val(value.email);
            		$("input[name=sex]").val(value.sex);
-           		$("input[name=married]").val(value.ismarried);	
+           		$("input[name=married]").val(value.ismarried);
+           		$('input[name="date"]').val(value.dob)	
 			 	$('#users-data #users-table').hide();
 			 	$('#form-data-users #myForm').show();           		
 			}
@@ -167,11 +175,21 @@
 			          sex: $("input[name=sex]:checked").val(),
 		          	  ismarried: $("input[name=married]:checked").val(),
 			          currentDateTime: modifyDateTime,
+			          dob: $('input[name="date"]').val(),
        				 }
        				 usersList[index]=obj;	 
 			}
 		});
 	}
+
+
+	var date_input=$('input[name="date"]');
+	date_input.datepicker({
+			format: 'dd-M-yyyy',
+			todayHighlight: true,
+			autoclose: true,
+		});
+
 
 //document ready    
 });
