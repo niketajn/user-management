@@ -188,6 +188,7 @@
 			format: 'dd-M-yyyy',
 			todayHighlight: true,
 			autoclose: true,
+			startDate: new Date()
 		});
 
 
